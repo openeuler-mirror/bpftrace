@@ -1,6 +1,6 @@
 Name:           bpftrace
 Version:        0.10.0
-Release:        1%{?dist}
+Release:        1
 Summary:        High-level tracing language for Linux eBPF
 License:        ASL 2.0
 
