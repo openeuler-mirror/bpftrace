@@ -1,6 +1,6 @@
 Name:           bpftrace
 Version:        0.10.0
-Release:        1
+Release:        2
 Summary:        High-level tracing language for Linux eBPF
 License:        ASL 2.0
 
@@ -16,7 +16,7 @@ BuildRequires:  zlib-devel llvm-devel clang-devel
 BuildRequires:  bcc-devel >= 0.11.0-2
 BuildRequires:  libbpf-devel libbpf-static
 BuildRequires:  binutils-devel
-
+Patch0001:      fix_build_error.patch
 
 %description
 bpftrace is a high-level tracing language for Linux enhanced Berkeley Packet
@@ -62,5 +62,8 @@ find %{buildroot}%{_datadir}/%{name}/tools -type f -exec \
 
 
 %changelog
+* Mon Nov 9 2020 wutao <wutao61@huawei.com> - 0.10.0-2
+- fix build error
+
 * Thu May 07 2020 openEuler Buildteam <buildteam@openeuler.org> - 0.10.0-1
 - Package init
