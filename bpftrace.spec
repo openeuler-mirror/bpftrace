@@ -1,6 +1,6 @@
 Name:           bpftrace
-Version:        0.10.0
-Release:        2
+Version:        0.13.0
+Release:        1
 Summary:        High-level tracing language for Linux eBPF
 License:        ASL 2.0
 
@@ -16,7 +16,6 @@ BuildRequires:  zlib-devel llvm-devel clang-devel
 BuildRequires:  bcc-devel >= 0.11.0-2
 BuildRequires:  libbpf-devel libbpf-static
 BuildRequires:  binutils-devel
-Patch0001:      fix_build_error.patch
 
 %description
 bpftrace is a high-level tracing language for Linux enhanced Berkeley Packet
@@ -36,8 +35,7 @@ and predecessor tracers such as DTrace and SystemTap.
 %cmake . \
         -DCMAKE_BUILD_TYPE=RelWithDebInfo \
         -DBUILD_TESTING:BOOL=OFF \
-        -DBUILD_SHARED_LIBS:BOOL=OFF \
-        -DLIBBCC_LIBRARIES:PATH=/usr/lib64/libbcc-no-libbpf.so
+        -DBUILD_SHARED_LIBS:BOOL=OFF
 %make_build
 
 
@@ -62,6 +60,9 @@ find %{buildroot}%{_datadir}/%{name}/tools -type f -exec \
 
 
 %changelog
+* Mon Jan 10 2022 liyanan <liyanan32@huawei.com> - 0.13.0-1
+- update to 0.13.0
+
 * Mon Nov 9 2020 wutao <wutao61@huawei.com> - 0.10.0-2
 - fix build error
 
