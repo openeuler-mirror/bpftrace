@@ -1,6 +1,6 @@
 Name:           bpftrace
 Version:        0.13.0
-Release:        1
+Release:        2
 Summary:        High-level tracing language for Linux eBPF
 License:        ASL 2.0
 
@@ -9,13 +9,18 @@ Source0:        %{url}/archive/v%{version}/%{name}-%{version}.tar.gz
 
 # Arches will be included as upstream support is added and dependencies are
 # satisfied in the respective arches
-ExclusiveArch:  x86_64 %{power64} aarch64
+ExclusiveArch:  x86_64 %{power64} aarch64 riscv64
 
 BuildRequires:  gcc-c++ bison flex cmake elfutils-libelf-devel
 BuildRequires:  zlib-devel llvm-devel clang-devel
 BuildRequires:  bcc-devel >= 0.11.0-2
 BuildRequires:  libbpf-devel libbpf-static
 BuildRequires:  binutils-devel
+
+%ifarch riscv64
+BuildRequires:  kernel-headers
+Patch0500:      add-supprot-for-riscv64.patch
+%endif
 
 %description
 bpftrace is a high-level tracing language for Linux enhanced Berkeley Packet
@@ -60,6 +65,10 @@ find %{buildroot}%{_datadir}/%{name}/tools -type f -exec \
 
 
 %changelog
+* Fri Mar 11 2022 laokz <laokz@foxmail.com> - 0.13.0-2
+- add riscv64 build target
+- apply upstream patch0500(after 0.13.1 and 0.14.1)
+
 * Mon Jan 10 2022 liyanan <liyanan32@huawei.com> - 0.13.0-1
 - update to 0.13.0
 
